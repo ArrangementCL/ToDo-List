@@ -136,21 +136,37 @@ extension ToDoViewController: UITableViewDelegate, UITableViewDataSource {
         }
         let data = todoList[indexPath.row]
         
-        tableView.isUserInteractionEnabled = false
         
-        cell.completeBtn.setImage(UIImage(systemName: "circle.inset.filled"), for: .normal)
-        cell.completeBtn.tintColor = .systemPink
-        data.complete = true
-        data.date = Date()
-        doneList.append(data)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.todoList.remove(at: indexPath.row)
-            self.allList = self.todoList + self.doneList
-            CoreDataManager.shared.saveContext()
-            tableView.isUserInteractionEnabled = true
-            tableView.reloadData()
+        if UserDefaults.standard.bool(forKey: "提示") {
+    
+            tableView.isUserInteractionEnabled = false
+            
+            cell.completeBtn.setImage(UIImage(systemName: "circle.inset.filled"), for: .normal)
+            cell.completeBtn.tintColor = .systemPink
+            data.complete = true
+            data.date = Date()
+            doneList.append(data)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.todoList.remove(at: indexPath.row)
+                self.allList = self.todoList + self.doneList
+                CoreDataManager.shared.saveContext()
+                tableView.isUserInteractionEnabled = true
+                tableView.reloadData()
+            }
+            tableView.deselectRow(at: indexPath, animated: true)
+            
+        } else {
+            
+            tableView.deselectRow(at: indexPath, animated: true)
+            let alert = UIAlertController(title: "提示", message: "待辦清單點擊後過 1 秒會將待辦事項移動到已完成，注意不要誤觸喔！", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "我知道了", style: .default) { _ in
+                UserDefaults.standard.set(true, forKey: "提示")
+                return
+            }
+            alert.addAction(ok)
+            present(alert, animated: true)
         }
-        tableView.deselectRow(at: indexPath, animated: true)
+
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
