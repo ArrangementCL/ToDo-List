@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct CellName {
     static let todoCell = "todoCell"
     static let doneCell = "doneCell"

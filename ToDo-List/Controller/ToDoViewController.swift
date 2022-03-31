@@ -6,10 +6,9 @@
 //
 
 import UIKit
-import KRProgressHUD
 
 class ToDoViewController: UIViewController {
-
+    
     @IBOutlet weak var messageHeight: NSLayoutConstraint!
     @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var addTextField: UITextField!
@@ -30,11 +29,7 @@ class ToDoViewController: UIViewController {
         CoreDataManager.shared.loadFromCoreData(data: &allList)
         todoList = allList.filter({$0.complete == false})
         doneList = allList.filter({$0.complete == true})
-        // Do any additional setup after loading the view.
     }
-    
-
-
     
     @IBAction func addTextFieldChanged(_ sender: UITextField) {
         guard let text = sender.text?.trimmingCharacters(in: .whitespaces) else {
@@ -77,22 +72,17 @@ class ToDoViewController: UIViewController {
             self.addBtn.setImage(nil, for: .normal)
             self.addBtn.backgroundColor = .gray
         }
-
+        
     }
     
-
-    
-    
-
-    
     //MARK: KEYBOARD
-
+    
     func keyboardNotificationSet(){
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
-
+    
     @objc func keyboardWillShow (_ notification: Notification) { //鍵盤要出來
         if let keyboard = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.25, delay: 0, animations: {
@@ -121,17 +111,6 @@ class ToDoViewController: UIViewController {
         }, completion: nil)
         self.keyboardHeight = 0
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 //MARK: UITableViewDelegate,UITableViewDataSource
@@ -158,7 +137,7 @@ extension ToDoViewController: UITableViewDelegate, UITableViewDataSource {
         let data = todoList[indexPath.row]
         
         tableView.isUserInteractionEnabled = false
-
+        
         cell.completeBtn.setImage(UIImage(systemName: "circle.inset.filled"), for: .normal)
         cell.completeBtn.tintColor = .systemPink
         data.complete = true
@@ -171,9 +150,7 @@ extension ToDoViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.isUserInteractionEnabled = true
             tableView.reloadData()
         }
-        
         tableView.deselectRow(at: indexPath, animated: true)
-        
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -186,9 +163,6 @@ extension ToDoViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.reloadData()
         }
     }
-    
-
-    
 }
 
 //MARK: UITextFieldDelegate

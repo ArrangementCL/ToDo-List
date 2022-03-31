@@ -19,7 +19,6 @@
 		D5C3DE7A27F3FA8C003FC96A /* ToDoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C3DE7927F3FA8C003FC96A /* ToDoTableViewCell.swift */; };
 		D5C3DE7C27F3FA9D003FC96A /* DoneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C3DE7B27F3FA9D003FC96A /* DoneTableViewCell.swift */; };
 		D5C3DE7E27F3FB22003FC96A /* constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C3DE7D27F3FB22003FC96A /* constant.swift */; };
-		D5C3DE8127F43D1E003FC96A /* KRProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = D5C3DE8027F43D1E003FC96A /* KRProgressHUD */; };
 		D5C3DE8C27F4597B003FC96A /* ToDoList+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C3DE8A27F4597B003FC96A /* ToDoList+CoreDataClass.swift */; };
 		D5C3DE8F27F4A04D003FC96A /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C3DE8E27F4A04D003FC96A /* Date+Extension.swift */; };
 /* End PBXBuildFile section */
@@ -48,7 +47,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D5C3DE8127F43D1E003FC96A /* KRProgressHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,7 +132,6 @@
 			);
 			name = "ToDo-List";
 			packageProductDependencies = (
-				D5C3DE8027F43D1E003FC96A /* KRProgressHUD */,
 			);
 			productName = "ToDo-List";
 			productReference = D5C3DE4D27F3D4E1003FC96A /* ToDo-List.app */;
@@ -165,7 +162,6 @@
 			);
 			mainGroup = D5C3DE4427F3D4E1003FC96A;
 			packageReferences = (
-				D5C3DE7F27F43D1E003FC96A /* XCRemoteSwiftPackageReference "KRProgressHUD" */,
 			);
 			productRefGroup = D5C3DE4E27F3D4E1003FC96A /* Products */;
 			projectDirPath = "";
@@ -428,25 +424,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		D5C3DE7F27F43D1E003FC96A /* XCRemoteSwiftPackageReference "KRProgressHUD" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/krimpedance/KRProgressHUD";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		D5C3DE8027F43D1E003FC96A /* KRProgressHUD */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D5C3DE7F27F43D1E003FC96A /* XCRemoteSwiftPackageReference "KRProgressHUD" */;
-			productName = KRProgressHUD;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		D5C3DE5927F3D4E1003FC96A /* ToDo_List.xcdatamodeld */ = {

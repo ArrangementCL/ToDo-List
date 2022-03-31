@@ -9,31 +9,9 @@ import Foundation
 
 extension Date {
     
-    func toString() -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MM月dd日"
-        let result = formatter.string(from: self)
-        return result
-    }
-    
-    func toStringDetail() -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy年MM月dd日 HH:mm"
-        let result = formatter.string(from: self)
-        return result
-    }
-    
-    func toStringJustTime() -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MM月dd日 HH:mm"
-        let result = formatter.string(from: self)
-        return result
-    }
-    
     func calculateTimeDifference(toTheDate: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy年MM月dd日"
-
         
         let components: Set<Calendar.Component> = [.second, .minute, .hour, .day, .month, .year]
         let difference = Calendar.current.dateComponents(components, from: self, to: toTheDate)

@@ -8,7 +8,7 @@
 import UIKit
 
 class DoneViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     var allList: [ToDoList] = []
@@ -19,9 +19,6 @@ class DoneViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        
-
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,18 +27,9 @@ class DoneViewController: UIViewController {
         todoList = allList.filter({$0.complete == false})
         tableView.reloadData()
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
+//MARK: UITableViewDelegate, UITableViewDataSource
 extension DoneViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return doneList.count

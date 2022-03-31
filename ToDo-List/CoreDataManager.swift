@@ -48,7 +48,6 @@ class CoreDataManager: NSObject {
     }
     
     func saveContext () {
-        
         if managedObjectContext().hasChanges {
             do {
                 try managedObjectContext().save()
