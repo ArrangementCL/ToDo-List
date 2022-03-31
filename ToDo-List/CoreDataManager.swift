@@ -76,4 +76,12 @@ class CoreDataManager: NSObject {
             }
         }
     }
+    
+    func deleteFromCoreData(data: ToDoList) {
+        let moc = managedObjectContext()
+        moc.performAndWait {
+            moc.delete(data)
+        }
+        saveContext()
+    }
 }

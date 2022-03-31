@@ -80,6 +80,8 @@ class ToDoViewController: UIViewController {
 
     }
     
+
+    
     
 
     
@@ -173,6 +175,20 @@ extension ToDoViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let deleteData = todoList[indexPath.row]
+            todoList.remove(at: indexPath.row)
+            allList = todoList + doneList
+            CoreDataManager.shared.deleteFromCoreData(data: deleteData)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            tableView.reloadData()
+        }
+    }
+    
+
+    
 }
 
 //MARK: UITextFieldDelegate

@@ -8,6 +8,7 @@
 import Foundation
 
 extension Date {
+    
     func toString() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM月dd日"
@@ -27,5 +28,24 @@ extension Date {
         formatter.dateFormat = "MM月dd日 HH:mm"
         let result = formatter.string(from: self)
         return result
+    }
+    
+    func calculateTimeDifference(toTheDate: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy年MM月dd日"
+
+        
+        let components: Set<Calendar.Component> = [.second, .minute, .hour, .day, .month, .year]
+        let difference = Calendar.current.dateComponents(components, from: self, to: toTheDate)
+        
+        if difference.day != 0 {
+            return formatter.string(from: self)
+        } else if difference.hour != 0 {
+            return "\(difference.hour!)小時前"
+        } else if difference.minute != 0 {
+            return "\(difference.minute!)分鐘前"
+        } else {
+            return "\(difference.second!)秒前"
+        }
     }
 }
